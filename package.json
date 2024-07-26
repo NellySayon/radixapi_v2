@@ -9,8 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.1",
+    "@egjs/react-flicking": "^4.11.3",
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.5",
+    "@mui/material": "^5.16.5",
+    "@mui/material-nextjs": "^5.16.4",
+    "@radixdlt/radix-dapp-toolkit": "^2.0.2",
+    "next": "14.2.5",
     "react": "^18",
+    "react-cookie": "^7.2.0",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "sharp": "^0.33.4",
+    "swagger-ui-react": "^5.17.14"
   }
 }

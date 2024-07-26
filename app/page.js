@@ -1,95 +1,54 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Service from "../components/home/Service";
+import References from "@/components/home/References";
+import Statistics from "@/components/home/Statistics";
+
+export const metadata = {
+  title: "RadixAPI",
+  description:
+    "Data provider for Radix DLT, delivering the endpoints you need.",
+  keywords:
+    "Radix, API, endpoint, data, json, blockchain, ledger, database, gateway, developer, dApp",
+};
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Paper elevation={0} sx={{ paddingTop: 12, paddingBottom: 4 }}>
+        <Container maxWidth="md" sx={{ textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            color="primary"
+            fontWeight="700"
+            gutterBottom
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+            Welcome to RadixAPI
+          </Typography>
+          <Typography variant="h4" color="primary" gutterBottom>
+            We enable fast dApp development by letting you focus on your smart
+            contracts and your UX!
+          </Typography>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <Typography variant="h5" color="primary" fontWeight="700">
+            How? By providing you with a simple, secure and scalable API to
+            access the Radix ledger and fetch the data you need.
+          </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            sx={{ mt: 4 }}
+          >
+            Get Started
+          </Button>
+        </Container>
+      </Paper>
+      <Service />
+      <Statistics />
+      <References />
+    </>
   );
 }
