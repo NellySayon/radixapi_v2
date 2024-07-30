@@ -1,19 +1,17 @@
 
 html {
-  --radix-connect-button-width: 40px;
-    --radix-connect-button-height: 40px;
-    --radix-connect-button-border-radius: 8px;
+  --radix-connect-button-width: 30px;
+    --radix-connect-button-height: 30px;
+    --radix-connect-button-border-radius: 90px;
 }
 
-
 body {
-  background: #1e1e1e; 
+  background: #121212; 
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .content {
@@ -29,12 +27,13 @@ body {
 }
 
 a {
-  color: white;
+  color: #0ea5e9;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #CB45C1;
+  color: #5eead4;
 }
 
 .logo {
@@ -56,7 +55,7 @@ a:hover {
 .sectionImage {
   height: 120px;
   width: auto;
-  margin: 14px ;    
+  margin: 20px ;    
 }
 
 .referenceImage {

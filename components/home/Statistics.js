@@ -11,7 +11,7 @@ const Statistics = () => {
   const endpoints = 10;
 
   return (
-    <Paper elevation={2} sx={{ paddingTop: 6, paddingBottom: 2 }}>
+    <Paper square elevation={0} sx={{ paddingTop: 6, paddingBottom: 2}}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>

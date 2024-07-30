@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import logo from "../../public/images/logo.png";
 
@@ -71,12 +71,10 @@ const HeaderBar = () => {
 
   return (
     <AppBar
-      color="transparent"
       elevation={0}
       position="absolute"
       sx={{
         height: "80px",
-        backgroundColor: "#1e1e1e",
       }}
     >
       <Toolbar
@@ -85,13 +83,6 @@ const HeaderBar = () => {
           justifyContent: "space-around",
           alignItems: "center",
           mt: 0.5,
-          mr: "8px",
-          ml: "8px",
-          padding: {
-            xs: "0 4px",
-            sm: "0 24px",
-          },
-          maxWidth: "xl",
         }}
       >
         <Link href="/">
@@ -104,42 +95,18 @@ const HeaderBar = () => {
             overflowY: "auto",
           }}
         >
-          <Link href="/#about" style={{ color: "white" }}>
-            <Button size="large" sx={{ my: 2, color: "white" }}>
-              Service
-            </Button>
-          </Link>
-
-          <Link href="/#lab" style={{ color: "white" }}>
-            <Button
-              size="large"
-              sx={{ my: 2, color: "white", minWidth: "70px" }}
-            >
-              Pricing
-            </Button>
-          </Link>
-          <Link href="/#projects" style={{ color: "white" }}>
-            <Button
-              size="large"
-              sx={{
-                my: 2,
-                color: "white",
-              }}
-            >
-              Docs
-            </Button>
-          </Link>
-          <Link href="/#projects" style={{ color: "white" }}>
-            <Button
-              size="large"
-              sx={{
-                my: 2,
-                color: "white",
-              }}
-            >
-              Help
-            </Button>
-          </Link>
+          <Button size="large" sx={{ my: 2, color: "white" }} href="/">
+            Home
+          </Button>
+          <Button size="large" sx={{ my: 2, color: "white" }} href="/service">
+            Service
+          </Button>
+          <Button size="large" sx={{ my: 2, color: "white" }} href="/pricing">
+            Pricing
+          </Button>
+          <Button size="large" sx={{ my: 2, color: "white" }} href="/start">
+            Start
+          </Button>
         </Box>
         <Box
           sx={{
@@ -147,7 +114,7 @@ const HeaderBar = () => {
             display: { xs: "flex", sm: "none" },
             justifyContent: "flex-end",
             alignItems: "center",
-            mr: 2,
+            mr: 1,
           }}
         >
           <IconButton
@@ -158,7 +125,8 @@ const HeaderBar = () => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <MenuIcon fontSize="medium"/>
+              <MenuIcon sx={{ color: "white" }} />
+            
           </IconButton>
           <Menu
             id="basic-menu"
@@ -177,18 +145,38 @@ const HeaderBar = () => {
               horizontal: "left",
             }}
           >
-            <MenuItem data-route="/#about" onClick={handleClose}>
-              About
+            <MenuItem data-route="/" onClick={handleClose}>
+              Home
             </MenuItem>
-            <MenuItem data-route="/#lab" onClick={handleClose}>
-              Lab
+            <MenuItem data-route="/service" onClick={handleClose}>
+              Service
             </MenuItem>
-            <MenuItem data-route="/#projects" onClick={handleClose}>
-              Projects
+            <MenuItem data-route="/pricing" onClick={handleClose}>
+              Pricing
+            </MenuItem>
+            <MenuItem data-route="/start" onClick={handleClose}>
+              Get Started
+            </MenuItem>
+            <MenuItem data-route="/profile" onClick={handleClose}>
+              My Profile
             </MenuItem>
           </Menu>
         </Box>
-        <radix-connect-button />
+        <Box
+          sx={{
+            display:"flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mr: 1,
+          }}
+        >
+          <IconButton color="#white" href="/profile" sx={{
+            display: { xs: "none", sm: "flex" }            
+          }}>
+            <AccountCircle sx={{fontSize: "30px"}} />
+          </IconButton>
+          <radix-connect-button />
+        </Box>
       </Toolbar>
     </AppBar>
   );

@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import apiicon from "../../public/images/Icon.png";
 
@@ -9,6 +8,9 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 import DataObjectIcon from "@mui/icons-material/DataObject";
 
@@ -24,11 +26,12 @@ const endpoints = [
   "Transaction",
   "Supply",
   "Validator",
+  "...",
 ];
 
 const Service = () => {
   return (
-    <Paper elevation={6} sx={{ paddingTop: 6, paddingBottom: 6 }}>
+    <Paper square elevation={1} sx={{ paddingTop: 8, paddingBottom: 12 }}>
       <Container maxWidth="lg" sx={{ textAlign: "center" }}>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Image src={apiicon} alt="RadixAPI" className="sectionImage" />
@@ -36,36 +39,58 @@ const Service = () => {
         <Stack
           direction="row"
           spacing={2}
-          alignItems={{ xs: "flex-start", sm: "flex-end" }}
+          useFlexGap
+          flexWrap="wrap"
+          alignItems="flex-end"
           justifyContent="center"
-          sx={{ mb: 2 }}
+          sx={{ mb: 4 }}
         >
-          <Typography variant="h4">Service</Typography>
-          <Typography gutterBottom variant="h6" color="primary">
-            Most wanted endpoints for Radix related data
+          <Typography variant="h4">Our Service</Typography>
+          <Typography variant="h6" color="primary">
+            Most wanted API for Radix related data
           </Typography>
         </Stack>
-
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Our goal is to make the data access easier, more accessible and also
-          more intuitive for the Radix developers. Therefore we have endpoints
-          for the following data ready to use:
-        </Typography>
-        <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-          {endpoints.map((endpoint) => (
-            <Chip
-              key={"chip_" + endpoint}
-              label={endpoint}
-              color="info"
-              variant="outlined"
-              icon={<DataObjectIcon />}
-            />
-          ))}
-        </Stack>
-
+        <Grid container spacing={4} justifyContent="center" alignItems="center">
+          <Grid item xs={12} sm={6} md={5}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" textAlign={{xs: "center", sm: "right"}} fontWeight="400">
+                  We make data access easier, more accessible and more intuitive
+                  for Radix developers.
+                </Typography>
+                <Typography variant="h6" textAlign={{xs: "center", sm: "right"}} fontWeight="400">
+                  Therefore we have endpoints for the following data on mainnet and stokenet ready to
+                  use...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={5}>
+            <Stack
+              direction="row"
+              spacing={2}
+              useFlexGap
+              flexWrap="wrap"
+              justifyContent="center"
+            >
+              {endpoints.map((endpoint) => (
+                <Chip
+                  key={"chip_" + endpoint}
+                  label={endpoint}
+                  color="secondary"
+                  size="large"
+                  variant="outlined"
+                  icon={<DataObjectIcon />}
+                />
+              ))}
+            </Stack>
+          </Grid>
+        </Grid>
         <Stack
           direction="row"
           spacing={4}
+          useFlexGap
+          flexWrap="wrap"
           alignItems={{ xs: "flex-start", sm: "flex-end" }}
           justifyContent="center"
           sx={{ mt: 4, mb: 4 }}
@@ -80,16 +105,10 @@ const Service = () => {
           variant="contained"
           color="secondary"
           size="large"
-          onClick={() => {
-            window.open(
-              "https://docs.radixapi.net/howto",
-              "_blank"
-            );
-          }}          
+          href="/service"
         >
-          More Information
+          Show all
         </Button>
-        
       </Container>
     </Paper>
   );

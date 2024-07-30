@@ -27,32 +27,36 @@ const References = (props) => {
   ];
 
   return (
-    <Paper elevation={4} sx={{ p: 2 }}>
+    <Paper square elevation={1} sx={{ paddingTop: 12, paddingBottom: 12 }}>
       <Container maxWidth="lg">
-        <Stack
+        {/* <Stack
           direction="row"
           spacing={2}
-          alignItems={{ xs: "flex-start", sm: "flex-end" }}
+          useFlexGap
+          flexWrap="wrap"
+          alignItems="flex-end"
           justifyContent="center"
           sx={{ mb: 2 }}
         >
           <Typography variant="h4">Why us?</Typography>
           <Typography variant="h6" color="primary">
-            We have been working with Radix data for a long time and listen to 
-            the community needs
+            We have been working with Radix data for a long time and listen to
+            the community needs.
           </Typography>
-        </Stack>
+        </Stack> */}
 
         <Stack
           direction="row"
           spacing={2}
+          useFlexGap
+          flexWrap="wrap"
           alignItems={{ xs: "flex-start", sm: "flex-end" }}
           justifyContent="center"
           sx={{ mb: 2 }}
         >
           <Typography variant="h4">References</Typography>
-          <Typography gutterBottom variant="h6" color="primary">
-            These projects trust our data service...
+          <Typography variant="h6" color="primary">
+            These projects trust our data service. Check them out!
           </Typography>
         </Stack>
 
