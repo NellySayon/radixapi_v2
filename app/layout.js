@@ -11,7 +11,7 @@ import theme from "../components/wrapper/ThemeDark";
 import HeaderBar from "../components/wrapper/HeaderBar";
 import Footer from "../components/wrapper/Footer";
 
-import { WalletContextProvider } from "../components/context/walletContext";
+import { AuthContextProvider } from "@/components/context/authContext";
 
 export default function RootLayout({ children }) {
   const scrollToTop = () => {
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         `}
         </Script>
         <div className="container">
-          <WalletContextProvider>
+          <AuthContextProvider>
             <AppRouterCacheProvider>
               <ThemeProvider theme={theme}>
                 <HeaderBar />
@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
                 </IconButton>
               </ThemeProvider>
             </AppRouterCacheProvider>
-          </WalletContextProvider>
+          </AuthContextProvider>
         </div>
       </body>
     </html>

@@ -1,24 +1,29 @@
 "use client";
 import { useState, useEffect, useContext, Fragment } from "react";
-import Link from "next/link";
 
+import Paper from "@mui/material/Paper";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Button from "@mui/material/Button";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import SyncIcon from "@mui/icons-material/Sync";
 
-import { CreateProfileDialog } from "../components/profile/createProfile";
-import { AddListingDialog } from "../components/profile/listingDialog";
-import AuthContext from "../components/context/authContext";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import SyncIcon from "@mui/icons-material/Sync";
+import EditIcon from "@mui/icons-material/Edit";
+
+import { CreateProfileDialog } from "@/components/profile/createProfile";
+import { AddListingDialog } from "@/components/profile/listingDialog";
+import AuthContext from "@/components/context/authContext";
 import MultiGrid from "@/components/ui/MultiGrid";
+import Purchase from "@/components/profile/Purchase";
+import { getUserData } from "@/components/api/user";
+import { formatDate } from "@/components/utils/formatDate";
 import {
   plan_small,
   plan_medium,
@@ -29,8 +34,6 @@ import {
   plan_listing,
 } from "@/components/utils/conditions";
 
-import { getUserData } from "@/components/api/user";
-import { formatDate } from "@/components/utils/formatDate";
 
 const ProfilePage = (props) => {
   const authCtx = useContext(AuthContext);
@@ -45,6 +48,7 @@ const ProfilePage = (props) => {
   const [userData, setUserData] = useState([]);
   const [balances, setBalances] = useState([]);
   const [hasListing, setHasListing] = useState(false);
+  const [purchaseMode, setPurchaseMode] = useState(false);
 
   const plans = {
     plan_small,
@@ -53,7 +57,7 @@ const ProfilePage = (props) => {
     plan_rola,
     plan_socket,
     plan_flatrate,
-    plan_listing
+    plan_listing,
   };
 
   useEffect(() => {
@@ -163,10 +167,10 @@ const ProfilePage = (props) => {
     return (
       <Card sx={{ mb: 3 }}>
         <CardContent>
-          <MultiGrid title="Name" value={name} />
+          <MultiGrid title="Profile name" value={name} />
           {balances.map((api_plan) => (
             <Fragment key={api_plan.api_plan}>
-              <Divider color="#e7eff6" sx={{ mt: 2, mb: 2 }} />
+              <Divider sx={{ mt: 2, mb: 2 }} />
               <MultiGrid
                 title="API plan"
                 value={getPlanName(api_plan.api_plan)}
@@ -199,26 +203,13 @@ const ProfilePage = (props) => {
   };
 
   return (
-    <>
-      <Head>
-        <title>RadixAPI User Profile</title>
-        <meta
-          name="description"
-          content="Your RadixAPI account overview and balances"
-        />
-      </Head>
-      <Container
-        maxWidth="md"
-        disableGutters
-        sx={{
-          mt: { xs: "55px", sm: "100px" },
-          mb: "10px",
-          padding: { xs: 0, sm: 2 },
-        }}
-      >
+    <Paper square elevation={1} sx={{ paddingTop: 14, paddingBottom: 6 }}>
+      <Container maxWidth="lg">
         {connected != true ? (
-          <Alert severity="error">
-            Please connect your wallet via the Radix Connect Button!
+          <Alert severity="error" variant="outlined">
+            <Typography variant="body1">
+              Please connect your wallet via the Radix Connect Button!
+            </Typography>
           </Alert>
         ) : pending == true ? (
           <Alert severity="info">
@@ -229,14 +220,15 @@ const ProfilePage = (props) => {
           </Alert>
         ) : badgeID === "" ? (
           <>
-            <Alert severity="info" variant="outlined" sx={{ mb: 2 }}>
-              <Typography variant="body1" color="primary">
-                No owner badge found.
+            <Alert severity="warning" variant="outlined" sx={{ mb: 2 }}>
+              <Typography variant="body1">
+                No owner badge found. Change the connected account or start by
+                creating a new profile.
               </Typography>
             </Alert>
             <Button
-              variant="outlined"
-              color="info"
+              variant="contained"
+              color="secondary"
               startIcon={<AddBoxIcon />}
               onClick={() => {
                 setDialogOpen(true);
@@ -253,37 +245,32 @@ const ProfilePage = (props) => {
             />
           </>
         ) : jwt === "" ? (
-          <Alert severity="error">
-            We could not verify your profile. Please reconnect your Radix wallet.
+          <Alert severity="error" variant="outlined">
+            <Typography variant="body1">
+              We could not verify your profile. Please reconnect your Radix
+              wallet.
+            </Typography>
           </Alert>
         ) : userData.user_account ? (
           <>
-            <Typography variant="h5" sx={{ mb: 2 }}>
-              Your Profile
+            <Typography variant="h4" sx={{ mb: 2 }}>
+              Your current API plans
             </Typography>
             <SummaryGrid name={userData.user_account} balances={balances} />
-            <Link href="/buy">
-              <Button
-                variant="outlined"
-                color="info"
-                startIcon={<AddBoxIcon />}
-              >
-                New purchase
-              </Button>
-            </Link>
-            {/* TODO: only show this button when the user has ourchased the listing plan */}
-            {hasListing ? (
+
+            {purchaseMode ? (
+              <Purchase />
+            ) : hasListing ? (
               <div>
                 <Button
-                  variant="outlined"
-                  color="info"
-                  startIcon={<AddBoxIcon />}
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<EditIcon />}
                   onClick={() => {
                     setListingOpen(true);
                   }}
-                  sx={{mt: 2}}
                 >
-                  Add listing Information
+                  Maintain listing data
                 </Button>
                 <AddListingDialog
                   open={listingOpen}
@@ -292,8 +279,31 @@ const ProfilePage = (props) => {
                   rdt={rdt}
                   userData={userData}
                 />
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<AddBoxIcon />}
+                  sx={{ ml: 2 }}
+                  onClick={() => {
+                    setPurchaseMode(true);
+                  }}
+                >
+                  New purchase
+                </Button>
               </div>
-            ) : null}
+            ) : (
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<AddBoxIcon />}
+                sx={{ mt: 2 }}
+                onClick={() => {
+                  setPurchaseMode(true);
+                }}
+              >
+                New purchase
+              </Button>
+            )}
           </>
         ) : (
           <Alert severity="error">
@@ -303,8 +313,52 @@ const ProfilePage = (props) => {
           </Alert>
         )}
       </Container>
-    </>
+    </Paper>
   );
 };
+
+// ---------------------------------------------------------------------------------------------
+// This function gets called at build time and pre-renders the page with the data from the API
+// and returns it as props to the page component
+// ---------------------------------------------------------------------------------------------
+// export async function getServerSideProps() {
+//   let xrdPrice = 0;
+
+//   const requestOptionsRCV = {
+//     method: "GET",
+//     headers: {
+//       accept: "application/json",
+//       Authorization: "Bearer " + process.env.RDXAPI_BEARER,
+//     },
+//   };
+
+//   const url = [
+//     `${process.env.RDXAPI_LINK}/token/price/current?resource_addresses=resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd`,
+//   ];
+
+//   try {
+//     const response = await fetch(url, requestOptionsRCV).then((res) =>
+//       res.json()
+//     );
+
+//     // check for error response
+//     if (!response) {
+//       console.log("Error at PurchasePage: No response from XRD price API");
+//     } else {
+//       xrdPrice =
+//         response.data[
+//           "resource_rdx1tknxxxxxxxxxradxrdxxxxxxxxx009923554798xxxxxxxxxradxrd"
+//         ].usd_price;
+//     }
+//   } catch (error) {
+//     console.log("Error during data fetch for XRD price", error);
+//   }
+
+//   return {
+//     props: {
+//       xrdPrice: xrdPrice,
+//     },
+//   };
+// }
 
 export default ProfilePage;

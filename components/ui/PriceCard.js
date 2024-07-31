@@ -42,7 +42,7 @@ const PriceCard = (props) => {
               checked={selPlanCtx.selectedPlan === props.plan.name}
               onChange={handleChange}
               value={props.plan.name}
-              style={{ color: "#04c187" }}
+              
             />
           ) : null}
           <Typography variant="h4" fontWeight={600}>
@@ -87,7 +87,7 @@ const PriceCard = (props) => {
             Terms
           </Button>
 
-          <Link href="/buy">
+          <Link href="/profile">
             <Button
               size="medium"
               variant="outlined"

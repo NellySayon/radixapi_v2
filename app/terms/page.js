@@ -4,6 +4,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 
+export const metadata = {
+  title: "Terms and Conditions",
+  description:
+    "RadixAPI terms and conditions for the usage of our data service",  
+};
+
 function TermsPage() {
   return (
     <Paper square elevation={1} sx={{ paddingTop: 12, paddingBottom: 6 }}>

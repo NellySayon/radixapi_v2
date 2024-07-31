@@ -1,11 +1,14 @@
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
 import Pricing from "@/components/home/Pricing";
+
+export const metadata = {
+  title: "Pricing",
+  description:
+    "The pricing of RadixAPI, including the different plans and costs.",  
+};
 
 function PricingPage() {
   return (
@@ -27,19 +30,29 @@ function PricingPage() {
           </Typography>
         </Container>
       </Paper>
-      <Pricing mode="main" />
+      <Paper square elevation={0} sx={{ paddingTop: 6, paddingBottom: 6 }}>
+        <Container maxWidth="lg">
+        <Typography variant="h4" sx={{ mb: 2 }}>
+            Available API plans
+          </Typography>
+          <Pricing mode="main" />
+        </Container>
+      </Paper>
       <Paper square elevation={1} sx={{ paddingTop: 6, paddingBottom: 6 }}>
         <Container maxWidth="lg">
-        <Typography variant="h4" sx={{ mb: 1 }}>Detailed costs
+          <Typography variant="h4" sx={{ mb: 1 }}>
+            Detailed costs
           </Typography>
-          <Typography variant="h6">Check our{" "}
+          <Typography variant="h6">
+            Check our{" "}
             <a
               href="https://docs.radixapi.net/pricing-and-conditions/consuming-credits"
               target="_blank"
             >
               documentation
             </a>{" "}
-            to get the detailed list of credit costs per endpoint.</Typography>
+            to get the detailed list of credit costs per endpoint.
+          </Typography>
         </Container>
       </Paper>
     </>

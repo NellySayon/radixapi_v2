@@ -9,6 +9,12 @@ import AlertTitle from "@mui/material/AlertTitle";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
+export const metadata = {
+  title: "Get Started",
+  description:
+    "Learn how to get started with RadixAPI and use our data service.",  
+};
+
 function GetStarted() {
   return (
     <Paper square elevation={1} sx={{ paddingTop: 12, paddingBottom: 6 }}>

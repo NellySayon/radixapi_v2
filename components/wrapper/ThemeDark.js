@@ -29,6 +29,12 @@ let theme = createTheme({
     info: {
       main: "#67e8f9",
     },
+    error: {
+      main: "#db2777",
+    },
+    warning: {
+      main: "#d946ef",
+    },
   },
   typography: {
     fontFamily: font.style.fontFamily,    

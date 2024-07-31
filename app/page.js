@@ -2,7 +2,9 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import Service from "../components/home/Service";
+import Stack from "@mui/material/Stack";
+
+import Service from "@/components/home/Service";
 import References from "@/components/home/References";
 import Statistics from "@/components/home/Statistics";
 import Pricing from "@/components/home/Pricing";
@@ -32,7 +34,12 @@ export default function Home() {
             We enable fast dApp development by letting you focus on your smart
             contracts and your UX!
           </Typography>
-          <Typography variant="h5" color="primary" gutterBottom fontWeight="700">
+          <Typography
+            variant="h5"
+            color="primary"
+            gutterBottom
+            fontWeight="700"
+          >
             How? By providing you with a simple, secure and scalable API to
             access the Radix ledger and fetch the data you need.
           </Typography>
@@ -50,7 +57,35 @@ export default function Home() {
       <Service />
       <Statistics />
       <References />
-      <Pricing mode="preview"/>
+      <Paper square elevation={0} sx={{ paddingTop: 6, paddingBottom: 6 }}>
+        <Container maxWidth="lg" sx={{ textAlign: "center" }}>
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            flexWrap="wrap"
+            alignItems="flex-end"
+            justifyContent="center"
+            sx={{ mb: 4 }}
+          >
+            <Typography variant="h4">Pricing</Typography>
+            <Typography variant="h6" color="primary">
+              Different plans for different needs. Choose the one that fits you
+              best for now and grow with us.
+            </Typography>
+          </Stack>
+          <Pricing mode="preview" />
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            href="/pricing"
+            sx={{mt: 4}}
+          >
+            More on pricing
+          </Button>
+        </Container>
+      </Paper>
       <Paper square elevation={1} sx={{ paddingTop: 12, paddingBottom: 12 }}>
         <Container maxWidth="md" sx={{ textAlign: "center" }}>
           <Typography
@@ -62,7 +97,8 @@ export default function Home() {
             Get in touch!
           </Typography>
           <Typography variant="h4" color="primary" gutterBottom>
-            Contact us for any questions, feedback or feature requests. We offer custom solutions as well.
+            Contact us for any questions, feedback or feature requests. We offer
+            custom solutions as well.
           </Typography>
 
           <Button

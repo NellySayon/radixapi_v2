@@ -6,6 +6,11 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { ListItemText } from "@mui/material";
 
+export const metadata = {
+  title: "Privacy Statement",
+  description:
+    "Learn how we handle your personal data when you use our service.",  
+};
 
 function PrivacyPage() {
   return (

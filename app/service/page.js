@@ -13,6 +13,12 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import SwaggerIcon from "@/components/icons/swaggerIcon";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
+export const metadata = {
+  title: "Service",
+  description:
+    "The service provided by RadixAPI, including the endpoints and functionality.",  
+};
+
 function ServicePage() {
   return (
     <>

@@ -6,9 +6,9 @@ import "@egjs/react-flicking/dist/flicking.css";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import ReferenceCard from "../ui/ReferenceCard";
 import Stack from "@mui/material/Stack";
 
+import ReferenceCard from "../ui/ReferenceCard";
 import xidar from "../images/xidar_logo.png";
 import rdx from "../images/rdx_logo.svg";
 import dmany from "../images/dmany_logo.svg";
@@ -16,7 +16,7 @@ import domains from "../images/domains_logo.svg";
 import scan from "../images/radixscan_logo.svg";
 import oci from "../images/oci_logo.png";
 
-const References = (props) => {
+const References = () => {
   const plugins = [
     new AutoPlay({
       duration: 2000,
@@ -29,22 +29,6 @@ const References = (props) => {
   return (
     <Paper square elevation={1} sx={{ paddingTop: 12, paddingBottom: 12 }}>
       <Container maxWidth="lg">
-        {/* <Stack
-          direction="row"
-          spacing={2}
-          useFlexGap
-          flexWrap="wrap"
-          alignItems="flex-end"
-          justifyContent="center"
-          sx={{ mb: 2 }}
-        >
-          <Typography variant="h4">Why us?</Typography>
-          <Typography variant="h6" color="primary">
-            We have been working with Radix data for a long time and listen to
-            the community needs.
-          </Typography>
-        </Stack> */}
-
         <Stack
           direction="row"
           spacing={2}
